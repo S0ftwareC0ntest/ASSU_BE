@@ -11,6 +11,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Write application-secret.yml to runner
+        run: |
+          echo "${{ secrets.APPLICATION_SECRET }}" > application-secret.yml
+
+      - name: Upload application-secret.yml to EC2
+        uses: appleboy/scp-action@v0.1.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          source: application-secret.yml
+          target: /home/ubuntu/
+
       - name: Upload deploy.sh to EC2
         uses: appleboy/scp-action@v0.1.3
         with:
