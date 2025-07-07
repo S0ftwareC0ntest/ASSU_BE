@@ -1,3 +1,9 @@
+### build ###
+*.jar
+*.tar
+*.tar.gz
+*.zip
+
 HELP.md
 .gradle
 build/
@@ -38,9 +44,3 @@ out/
 
 ### Secret ###
 src/main/resources/application-secret.yml
-
-### build ###
-*.jar
-*.tar
-*.tar.gz
-*.zip
