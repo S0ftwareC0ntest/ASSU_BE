@@ -2,6 +2,9 @@ version: "3.8"
 
 services:
   assu-blue:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: andylee259/assu-app:latest
     container_name: assu-blue
     ports:
@@ -15,6 +18,9 @@ services:
       - assu-network
 
   assu-green:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: andylee259/assu-app:latest
     container_name: assu-green
     ports:
