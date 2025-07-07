@@ -2,7 +2,7 @@
 
 APP_NAME=assu-app
 TAG=latest
-DOCKER_USERNAME=${DOCKERHUB_USERNAME:-your_dockerhub_username}
+DOCKER_USERNAME=${DOCKERHUB_USERNAME}
 
 BLUE_CONTAINER="assu-blue"
 GREEN_CONTAINER="assu-green"
@@ -29,6 +29,7 @@ docker run -d \
   -p 8080:8080 \
   -v $SECRET_PATH:$INTERNAL_SECRET_PATH \
   $DOCKER_USERNAME/$APP_NAME:$TAG
+  --spring.config.additional-location=file:/app/
 
 echo "[4] Wait for new container to start (basic health delay)"
 sleep 10
