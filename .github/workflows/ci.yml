@@ -60,7 +60,7 @@ jobs:
       - name: Build & Push Dependency Cache
         run: |
           docker buildx build \
-          --builder default \
+          --builder mybuilder \
           --platform linux/amd64 \
           --push \
           --file Dockerfile \
@@ -72,7 +72,7 @@ jobs:
       - name: Build & Push Final App Image
         run: |
           docker buildx build \
-            --builder default \
+            --builder mybuilder \
             --platform linux/amd64 \
             --push \
             --file Dockerfile \
