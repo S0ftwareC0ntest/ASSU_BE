@@ -28,7 +28,7 @@ docker run -d \
   --name $NEW_CONTAINER \
   -p 8080:8080 \
   -v $SECRET_PATH:$INTERNAL_SECRET_PATH \
-  $DOCKER_USERNAME/$APP_NAME:$TAG
+  $DOCKER_USERNAME/$APP_NAME:$TAG \
   --spring.config.additional-location=file:/app/
 
 echo "[4] Wait for new container to start (basic health delay)"
