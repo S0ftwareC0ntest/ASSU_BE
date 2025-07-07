@@ -13,10 +13,10 @@ MAX_RETRIES=3
 
 # 활성화된 서비스 확인 및 스위칭 대상 결정
 determine_target() {
-  if docker compose -f docker-compose.yml ps | grep -q "app_blue.*Up"; then
+  if docker compose -f docker-compose.yml ps | grep -q "app-blue.*Up"; then
     TARGET="green"
     OLD="blue"
-  elif docker compose -f docker-compose.yml ps | grep -q "app_green.*Up"; then
+  elif docker compose -f docker-compose.yml ps | grep -q "app-green.*Up"; then
     TARGET="blue"
     OLD="green"
   else
@@ -38,9 +38,9 @@ health_check() {
     sleep 3
 
     # 현재 실행 중인 컨테이너 확인
-    CONTAINER_RUNNING=$(docker ps --filter "name=app_$TARGET" --format '{{.Names}}')
+    CONTAINER_RUNNING=$(docker ps --filter "name=app-$TARGET" --format '{{.Names}}')
 
-    if [ "$CONTAINER_RUNNING" = "app_$TARGET" ]; then
+    if [ "$CONTAINER_RUNNING" = "app-$TARGET" ]; then
       echo "$TARGET container is running."
       return 0  # 컨테이너가 실행 중이라면 헬스체크 성공
     else
@@ -81,7 +81,7 @@ switch_nginx_conf() {
 down_old_container() {
   if [ "$OLD" != "none" ]; then
     echo "Stopping old container: $OLD"
-    sudo docker stop "app_$OLD"
+    sudo docker stop "app-$OLD"
 
   fi
 }
@@ -93,7 +93,7 @@ main() {
 
   # 대상 컨테이너 실행
   echo "Starting $TARGET container..."
-  docker compose -f docker-compose.yml up -d "app_$TARGET"
+  docker compose -f docker-compose.yml up -d "app-$TARGET"
 
   # 헬스체크
   if [ "$TARGET" = "blue" ]; then
