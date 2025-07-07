@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: application-secret.yml
-          target: /home/ubuntu/
+          target: /home/ubuntu/app/config/
 
       - name: Upload deploy.sh to EC2
         uses: appleboy/scp-action@v0.1.3
@@ -31,7 +31,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.EC2_SSH_KEY }}
           source: ./deploy.sh
-          target: /home/ubuntu/
+          target: /home/ubuntu/app/
 
       - name: SSH and Deploy
         uses: appleboy/ssh-action@v1.0.0
@@ -42,5 +42,5 @@ jobs:
           script: |
             echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
             export DOCKERHUB_USERNAME=${{ secrets.DOCKERHUB_USERNAME }}
-            chmod +x /home/ubuntu/deploy.sh
-            /home/ubuntu/deploy.sh
+            chmod +x /home/ubuntu/app/deploy.sh
+            /home/ubuntu/app/deploy.sh

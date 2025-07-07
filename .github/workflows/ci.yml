@@ -19,6 +19,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Write application-secret.yml to runner
+        run: |
+          echo "${{ secrets.APPLICATION_SECRET }}" > application-secret.yml
+
+      - name: Move secret into resources
+        run: |
+          mkdir -p src/main/resources
+          mv application-secret.yml src/main/resources/
+
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
