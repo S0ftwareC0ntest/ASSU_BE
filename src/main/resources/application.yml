@@ -1,6 +1,8 @@
 spring:
   config:
-    import: application-secret.yml
+    import:
+      - optional:classpath:application-secret.yml
+      - optional:file:/app/config/application-secret.yml
   jpa:
     hibernate:
       ddl-auto: update
