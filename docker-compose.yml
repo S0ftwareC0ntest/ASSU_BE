@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  assu-blue:
+  app-blue:
     build:
       context: .
       dockerfile: Dockerfile
@@ -17,7 +17,7 @@ services:
     networks:
       - assu-network
 
-  assu-green:
+  app-green:
     build:
       context: .
       dockerfile: Dockerfile
