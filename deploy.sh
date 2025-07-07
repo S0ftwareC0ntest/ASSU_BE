@@ -13,10 +13,10 @@ MAX_RETRIES=3
 
 # 활성화된 서비스 확인 및 스위칭 대상 결정
 determine_target() {
-  if docker-compose -f docker-compose.yml ps | grep -q "app_blue.*Up"; then
+  if docker compose -f docker-compose.yml ps | grep -q "app_blue.*Up"; then
     TARGET="green"
     OLD="blue"
-  elif docker-compose -f docker-compose.yml ps | grep -q "app_green.*Up"; then
+  elif docker compose -f docker-compose.yml ps | grep -q "app_green.*Up"; then
     TARGET="blue"
     OLD="green"
   else
@@ -93,7 +93,7 @@ main() {
 
   # 대상 컨테이너 실행
   echo "Starting $TARGET container..."
-  docker-compose -f docker-compose.yml up -d "app_$TARGET"
+  docker compose -f docker-compose.yml up -d "app_$TARGET"
 
   # 헬스체크
   if [ "$TARGET" = "blue" ]; then
