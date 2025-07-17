@@ -35,6 +35,6 @@ public class UserPaper extends BaseEntity {
 	private Paper paper;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "student_id")
+	private Student student;
 }

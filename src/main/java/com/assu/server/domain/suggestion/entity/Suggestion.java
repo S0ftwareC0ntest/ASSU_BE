@@ -3,7 +3,7 @@ package com.assu.server.domain.suggestion.entity;
 import com.assu.server.domain.admin.entity.Admin;
 import com.assu.server.domain.common.entity.BaseEntity;
 import com.assu.server.domain.store.entity.Store;
-import com.assu.server.domain.user.entity.User;
+import com.assu.server.domain.user.entity.Student;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -32,8 +32,8 @@ public class Suggestion extends BaseEntity {
 	private Admin admin;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "student_id")
+	private Student student;
 
 	private String shopName;
 	private String content;

@@ -3,7 +3,7 @@ package com.assu.server.domain.certification.entity;
 import java.time.LocalDateTime;
 
 import com.assu.server.domain.common.entity.BaseEntity;
-import com.assu.server.domain.user.entity.User;
+import com.assu.server.domain.user.entity.Student;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,7 +30,7 @@ public class QRCertification extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "member_id")
-	private User user;
+	private Student student;
 
 	private Boolean isVerified;
 	private LocalDateTime verifiedTime;

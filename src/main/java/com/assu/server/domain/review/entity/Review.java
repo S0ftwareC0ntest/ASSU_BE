@@ -5,12 +5,10 @@ import java.util.List;
 import com.assu.server.domain.common.entity.BaseEntity;
 import com.assu.server.domain.partner.entity.Partner;
 import com.assu.server.domain.store.entity.Store;
-import com.assu.server.domain.user.entity.User;
+import com.assu.server.domain.user.entity.Student;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -36,7 +34,7 @@ public class Review extends BaseEntity {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "student_id")
-	private User user;
+	private Student student;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "partner_id")

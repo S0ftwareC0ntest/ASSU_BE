@@ -27,8 +27,8 @@ public class PartnershipUsage extends BaseEntity {
 	private Long id;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "student_id")
+	private Student student;
 
 	private String place;
 	private LocalDate date;

@@ -2,7 +2,7 @@ package com.assu.server.domain.certification.entity;
 import com.assu.server.domain.common.entity.BaseEntity;
 import com.assu.server.domain.partner.entity.Partner;
 import com.assu.server.domain.store.entity.Store;
-import com.assu.server.domain.user.entity.User;
+import com.assu.server.domain.user.entity.Student;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -39,6 +39,6 @@ public class AssociateCertification extends BaseEntity {
 	private Partner partner;
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_id")
-	private User user;
+	@JoinColumn(name = "student_id")
+	private Student student;
 }
