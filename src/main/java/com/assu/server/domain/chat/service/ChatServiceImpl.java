@@ -21,6 +21,7 @@ import com.assu.server.global.apiPayload.code.status.ErrorStatus;
 import com.assu.server.global.exception.DatabaseException;
 import com.assu.server.global.exception.GeneralException;
 import com.assu.server.global.util.PresenceTracker;
+import io.micrometer.core.instrument.MeterRegistry;
 import jakarta.transaction.Transactional;
 import org.springframework.dao.DataIntegrityViolationException;
 import lombok.RequiredArgsConstructor;
@@ -45,6 +46,7 @@ public class ChatServiceImpl implements ChatService {
     private final NotificationCommandService notificationCommandService;
     private final PresenceTracker presenceTracker;
     private final BlockRepository blockRepository;
+    private final MeterRegistry meterRegistry;
 
 
     @Override
@@ -115,6 +117,7 @@ public class ChatServiceImpl implements ChatService {
         // 3. 메시지 저장 (기존 로직)
         Message message = Message.toMessageEntity(request, room, sender, receiver, unreadForSender);
         Message saved = messageRepository.saveAndFlush(message);
+        meterRegistry.counter("chat.message.sent").increment();
         log.info("saved message id={}, roomId={}, senderId={}, receiverId={}",
                 saved.getId(), room.getId(), sender.getId(), receiver.getId());
 
